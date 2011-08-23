@@ -35,7 +35,7 @@ module ActiveAdmin
 
   # This form builder defines methods to build filter forms such
   # as the one found in the sidebar of the index page of a standard resource.
-  class FilterFormBuilder < FormBuilder
+  class FilterFormBuilder < DslFormBuilder
 
     def filter(method, options = {})
       return "" if method.nil? || method == ""
