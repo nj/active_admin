@@ -32,6 +32,7 @@ module ActiveAdmin
       template.content_tag :div, :class => "has_many #{association}" do
         buffer = "".html_safe
         buffer << template.content_tag(:h3, association.to_s.titlecase)
+        buffer << inputs(options, &form_block)
 
         # Capture the ADD JS
         js = inputs_for_nested_attributes :for => [association, object.class.reflect_on_association(association).klass.new],
