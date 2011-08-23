@@ -19,14 +19,18 @@ module ActiveAdmin
       # Add Delete Links
       form_block = proc do |has_many_form|
         fields = template.capture(has_many_form, &block)
-        delete = if has_many_form.object.new_record?
-          template.content_tag :li do
-            template.link_to I18n.t('active_admin.has_many_delete'), "#", :onclick => "$(this).closest('.has_many_fields').remove(); return false;", :class => "button"
-          end
+
+        onclick = if has_many_form.object.new_record?
+          "$(this).closest('.has_many_fields').remove(); return false;"
         else
+          "$(this).closest('.has_many_fields').slideUp().find('.destroy').val('1'); return false;"
         end
 
-        fields + delete
+        delete_button = template.content_tag :li do
+          template.link_to I18n.t('active_admin.has_many_delete'), "#", :onclick => onclick, :class => "button"
+        end
+
+        fields + delete_button
       end
 
       template.content_tag :div, :class => "has_many #{association}" do
