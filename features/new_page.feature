@@ -55,7 +55,7 @@ Feature: New Page
     Given "app/views/admin/posts/_form.html.erb" contains:
     """
       <% url = @post.new_record? ? admin_posts_path : admin_post_path(@post) %>
-      <%= active_admin_form_for @post, :url => url do |f|
+      <%= active_admin_dsl_form_for @post, :url => url do |f|
             f.inputs :title, :body
             f.buttons 
           end %>

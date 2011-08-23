@@ -29,7 +29,7 @@ describe ActiveAdmin::FormBuilder do
 
   def build_form(options = {}, &block)
     options.merge!({:url => posts_path})
-    active_admin_form_for Post.new, options, &block
+    active_admin_dsl_form_for Post.new, options, &block
   end
 
   context "in general" do

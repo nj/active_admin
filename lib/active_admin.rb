@@ -22,6 +22,7 @@ module ActiveAdmin
   autoload :DSL,                      'active_admin/dsl'
   autoload :Event,                    'active_admin/event'
   autoload :FormBuilder,              'active_admin/form_builder'
+  autoload :DslFormBuilder,           'active_admin/dsl_form_builder'
   autoload :Iconic,                   'active_admin/iconic'
   autoload :Menu,                     'active_admin/menu'
   autoload :MenuItem,                 'active_admin/menu_item'

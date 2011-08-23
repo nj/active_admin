@@ -18,7 +18,7 @@ module ActiveAdmin
           if form_config[:partial]
             render(form_config[:partial])
           else
-            active_admin_form_for(resource, config, &form_config[:block])
+            active_admin_dsl_form_for(resource, config, &form_config[:block])
           end
         end
       end
