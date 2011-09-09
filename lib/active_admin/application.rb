@@ -204,8 +204,12 @@ module ActiveAdmin
       end
     end
 
+    @@attached = false
     def attach_reloader
-      ActiveAdmin::Reloader.new(Rails.version).attach!
+      if(!@@attached)
+        @@attached = true
+        ActiveAdmin::Reloader.new(Rails.version).attach!
+      end
     end
 
 
