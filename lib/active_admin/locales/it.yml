@@ -34,6 +34,9 @@ it:
       one: "Sto mostrando <b>1</b> %{model}"
       one_page: "Sto mostrando <b>%{n}</b> %{model}. Lista completa."
       multiple: "Sto mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> di <b>%{total}</b> in totale"
+    non_pagination:
+      empty: "Nessun %{model} trovato"
+      multiple: "Sto mostrando <b>%{n}</b> %{model}."
     any: "Qualunque"
     blank_slate:
       content: "Non sono presenti %{resource_name}"
