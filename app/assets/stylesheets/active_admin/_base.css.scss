@@ -228,8 +228,8 @@ table.index_table {
 // ----------------------------------- Sidebar Sections 
 .sidebar_section { @include section; }
 
-// -------------------------------------- Pagination 
-.pagination_information { 
+// -------------------------------------- Index Body
+.collection_size_information {
   float: right;
   margin-bottom: 5px;
   font-size: 0.95em;
@@ -237,10 +237,11 @@ table.index_table {
   b { color: #5c6469; }
 }
 
-.paginated_collection_contents { 
+.collection_contents {
   clear: both;
 }
 
+// -------------------------------------- Pagination
 .pagination { 
   display: inline; 
   font-size: 0.9; 

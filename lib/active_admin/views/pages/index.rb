@@ -9,7 +9,9 @@ module ActiveAdmin
         end
 
         def config
-          index_config || default_index_config
+          (index_config || default_index_config).tap do |config|
+            config.block = default_index_block unless config.block
+          end
         end
 
         # Render's the index configuration that was set in the
@@ -36,10 +38,14 @@ module ActiveAdmin
           end
         end
 
-        # Creates a default configuration for the resource class. This is a table
-        # with each column displayed as well as all the default actions
+        # Creates a default configuration for the resource class. This is a paginated
+        # table with each column displayed as well as all the default actions
         def default_index_config
-          @default_index_config ||= ::ActiveAdmin::PageConfig.new(:as => :table) do |display|
+          @default_index_config ||= ::ActiveAdmin::PageConfig.new(:as => :table, :paginate => true, &default_index_block)
+        end
+
+        def default_index_block
+          @default_index_block ||= Proc.new do |display|
             id_column
             resource_class.content_columns.each do |col|
               column col.name.to_sym
@@ -76,8 +82,8 @@ module ActiveAdmin
         
         def render_index
           renderer_class = find_index_renderer_class(config[:as])
-          
-          paginated_collection(collection, :entry_name => active_admin_config.resource_name) do
+
+          collection_component(collection, :entry_name => active_admin_config.resource_name, :paginate => config[:paginate]) do
             div :class => 'index_content' do
               insert_tag(renderer_class, config, collection)
             end

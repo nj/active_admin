@@ -1,7 +1,7 @@
 module ActiveAdmin
   class PageConfig
 
-    attr_reader :block
+    attr_accessor :block
 
     def initialize(options = {}, &block)
       @options, @block = options, block

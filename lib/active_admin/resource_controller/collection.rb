@@ -111,7 +111,7 @@ module ActiveAdmin
         protected
 
         def active_admin_collection
-          paginate(super)
+          index_config.nil? || index_config[:paginate] ? paginate(super) : super
         end
 
         # Allow more records for csv files
