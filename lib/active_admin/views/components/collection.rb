@@ -1,32 +1,40 @@
 module ActiveAdmin
   module Views
 
-    # Wraps the content with pagination and available formats.
+    # Wraps the content with optional pagination and available formats.
     #
     # *Example:*
     #
-    #   paginated_collection collection, :entry_name => "Post" do
+    #   collection_component collection, :entry_name => "Post" do
     #     div do
     #       h2 "Inside the
     #     end
+    #   end
+    #
+    # It will also generate pagination links if pagination is enabled. If on
+    # the other hand no pagination is required it can be disabled by using the
+    # `:paginate => false` option:
+    #
+    #   collection_component collection, :entry_name => "Post", :paginate => false do
+    #     ...
     #   end
     #
     # This will create a div with a sentence describing the number of
     # posts in one of the following formats:
     #
     # * "No Posts found"
-    # * "Displaying all 10 Posts"
-    # * "Displaying Posts 1 - 30 of 31 in total"
-    #
-    # It will also generate pagination links.
+    # * "Displaying 10 Posts" (if pagination is disabled)
+    # * "Displaying all 10 Posts" (if pagination is enabled)
+    # * "Displaying Posts 1 - 30 of 31 in total" (if pagination is enabled)
     #
     class Collection < ActiveAdmin::Component
       builder_method :collection_component
 
 
-      # Builds a new paginated collection component
+      # Builds a new collection component
       #
-      # @param [Array] collection  A "paginated" collection from kaminari
+      # @param [Array] collection  A collection (if pagination is required, the collection must be
+      #                            a "paginated" collection from kaminari)
       # @param [Hash]  options     These options will be passed on to the page_entries_info
       #                            method.
       #                            Useful keys:
