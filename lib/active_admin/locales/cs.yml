@@ -31,4 +31,7 @@ cs:
       one: "Zobrazen <b>1</b> %{model}"
       one_page: "Zobrazeny <b>všechny %{n}</b> %{model}"
       multiple: "Zobrazen %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> z <b>%{total}</b>"
+    non_pagination:
+      empty: "Žádný %{model} nenalezen."
+      multiple: "Zobrazen <b>%{n}</b> %{model}"
     any: "Kterákoliv"

@@ -107,7 +107,8 @@ module ActiveAdmin
 
     # Configure the index page for the resource
     def index(options = {}, &block)
-      options[:as] ||= :table
+      options.reverse_merge!(:as => :table, :paginate => false)
+      options[:paginate] = false if options[:as] == :calendar
       controller.set_page_config :index, options, &block
     end
 

@@ -31,4 +31,7 @@ pl:
       one: "Wyświetlanie <b>1</b> %{model}"
       one_page: "Wyświetlanie <b>wszystkich %{n}</b> %{model}"
       multiple: "Wyświetlanie %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> z <b>%{total}</b>"
+    non_pagination:
+      empty: "Nie znaleziono %{model}"
+      multiple: "Wyświetlanie <b>%{n}</b> %{model}"
     any: "Jakikolwiek"

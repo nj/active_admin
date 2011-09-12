@@ -34,6 +34,9 @@ es:
       one: "Mostrando <b>1</b> %{model}"
       one_page: "Mostrando <b>todos(as) los(as) %{n}</b> %{model}"
       multiple: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de un total de <b>%{total}</b>"
+    non_pagination:
+      empty: "Ningún(a) %{model} encontrado"
+      multiple: "Mostrando <b>%{n}</b> %{model}"
     any: "Todos"
     blank_slate:
       content: "No hay %{resource_name} aún."
