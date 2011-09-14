@@ -57,7 +57,7 @@ module ActiveAdmin
           tr do
             7.times do |i|
               # TODO: Figure out if we need to take of weeks that start with anything other than monday
-              th I18n.t('date.abbr_day_names').rotate[i].capitalize
+              th I18n.t('date.abbr_day_names').rotate[i].capitalize, :abbr => I18n.t('date.day_names').rotate[i].capitalize
             end
           end
         end
@@ -92,7 +92,7 @@ module ActiveAdmin
           div :class => 'day' do
             date.day == 1 ? date.strftime("%b #{date.day}") : date.day.to_s
           end
-          instance_exec(date, collection.where(:send_at => date), &@page_config.block)
+          instance_exec(date, collection.where(group_by => date), &@page_config.block)
         end
       end
 
