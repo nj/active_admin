@@ -92,7 +92,7 @@ module ActiveAdmin
           div :class => 'day' do
             date.day == 1 ? date.strftime("%b #{date.day}") : date.day.to_s
           end
-          instance_exec(date, collection.where(:send_at => date), &@page_config.block)
+          instance_exec(date, collection.where(group_by => date), &@page_config.block)
         end
       end
 
