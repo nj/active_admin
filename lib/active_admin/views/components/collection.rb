@@ -30,6 +30,7 @@ module ActiveAdmin
     class Collection < ActiveAdmin::Component
       builder_method :collection_component
 
+      attr_reader :collection
 
       # Builds a new collection component
       #
@@ -38,10 +39,17 @@ module ActiveAdmin
       # @param [Hash]  options     These options will be passed on to the page_entries_info
       #                            method.
       #                            Useful keys:
-      #                             :entry_name - The name to display for this resource collection
+      #                              :entry_name - The name to display for this resource collection
+      #                              :param_name - Parameter name for page number in the links (:page by default)
+      #                              :download_links - Set to false to skip download format links
       def build(collection, options = {})
         @collection = collection
-        @options = options.reverse_merge!(:paginate => true)
+        @options = options.reverse_merge!(:download_links => true, :paginate => true)
+
+        unless collection.respond_to?(:num_pages)
+          raise(StandardError, "Collection is not a paginated scope. Set collection.page(params[:page]).per(10) before calling :paginated_collection.")
+        end
+        
         div(page_entries_info.html_safe, :class => "collection_size_information")
         @contents = div(:class => "collection_contents")
         build_footer
@@ -61,13 +69,16 @@ module ActiveAdmin
 
       def build_footer
         div :id => "index_footer" do
-          build_download_format_links
-          build_pagination if @options[:paginate]
+          build_download_format_links if @options[:download_links]
+          build_pagination            if @options[:paginate]
         end
       end
 
       def build_pagination
-        text_node paginate(collection)
+        options =  request.query_parameters.except(:commit, :format)
+        options[:param_name] = @options[:param_name] if @options[:param_name]
+
+        text_node paginate(collection, options.symbolize_keys)
       end
 
       # TODO: Refactor to new HTML DSL
