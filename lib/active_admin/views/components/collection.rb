@@ -46,8 +46,8 @@ module ActiveAdmin
         @collection = collection
         @options = options.reverse_merge!(:download_links => true, :paginate => true)
 
-        unless collection.respond_to?(:num_pages)
-          raise(StandardError, "Collection is not a paginated scope. Set collection.page(params[:page]).per(10) before calling :paginated_collection.")
+        if @options[:paginate] && !collection.respond_to?(:num_pages)
+          raise(StandardError, "Collection is not a paginated scope. Set collection.page(params[:page]).per(10) before calling :collection_component.")
         end
         
         div(page_entries_info.html_safe, :class => "collection_size_information")
