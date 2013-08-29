@@ -1,4 +1,4 @@
-require 'meta_search'
+require 'ransack'
 require 'bourbon'
 require 'devise'
 require 'kaminari'
