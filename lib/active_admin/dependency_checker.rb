@@ -20,7 +20,7 @@ module ActiveAdmin
       end
 
       def meta_search_1_1?
-        Gem.loaded_specs['meta_search'].version.to_s >= "1.1"
+        Gem.loaded_specs['ransack'].version.to_s >= "1.0.0"
       end
 
       def sass_rails_3_1?
